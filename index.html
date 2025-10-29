@@ -52,6 +52,16 @@
             margin-top: 15px;
             margin-bottom: 30px;
         }
+        
+        /* 섹션 제목 스타일 */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #5C3D2E;
+            margin: 25px 0 15px 0;
+            text-align: left;
+        }
+        
         .links a {
             display: block;
             background-color: #FFD166; /* 망고색 버튼 */
@@ -68,6 +78,63 @@
             transform: scale(1.05); /* 마우스를 올리면 살짝 커지는 효과 */
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
+        
+        /* 아코디언 스타일 */
+        .accordion {
+            background-color: #FFE8A3;
+            color: #5C3D2E;
+            cursor: pointer;
+            padding: 16px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            border-radius: 16px;
+            margin: 18px 0;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+        }
+        
+        .accordion:hover {
+            background-color: #FFD166;
+            transform: scale(1.02);
+        }
+        
+        .accordion.active {
+            background-color: #FFD166;
+        }
+        
+        /* 아코디언 패널 (숨겨지는 부분) */
+        .panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #FFFBF0;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .panel a {
+            display: block;
+            background-color: #FFF4D6;
+            color: #5C3D2E;
+            padding: 14px;
+            margin: 10px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .panel a:hover {
+            transform: scale(1.03);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            background-color: #FFE8A3;
+        }
+        
         .footer {
             margin-top: 30px;
             font-size: 16px;
@@ -88,9 +155,10 @@
         <!-- 3. 짧은 소개 -->
         <p>RP를 위한 공간</p>
 
-        <!-- 4. 링크 목록: 이 부분을 복사해서 링크를 추가하거나 수정하면 돼 -->
+        <!-- 4. 링크 목록 -->
         <div class="links">
-            <a href="https://m.cafe.daum.net/subdued20club/VrjL/954686" target="_blank">🐱 Ai 채팅 먀 달글 4차 🐈</a>
+            <!-- RP 도구들 섹션 -->
+            <div class="section-title">🍞♨️</div>
             <a href="https://toastout.github.io/toast1/" target="_blank">🔄 단어 치환기</a>
             <a href="https://toastout.github.io/toast2/" target="_blank">💃 RP 글쓰기</a>
 			<a href="https://toastout.github.io/toast3/" target="_blank">📝 단어 형광펜</a>
@@ -100,19 +168,44 @@
 			<a href="https://toastout.github.io/toast7/" target="_blank">🎥 채팅 분석기</a>
 			<a href="https://toastout.github.io/toast8/" target="_blank">🥔 GV 추출기</a>
 			<a href="https://toastout.github.io/toast9/" target="_blank">📊 토큰 추출기</a>
-            <a href="https://m.cafe.daum.net/subdued20club/VrjL/954685" target="_blank">💛 AI 채팅 3차</a>
-            <a href="https://m.cafe.daum.net/subdued20club/WKLt/4139" target="_blank">🧡 AI 채팅 2차</a>
-			<a href="https://m.cafe.daum.net/subdued20club/WKLt/3418" target="_blank">❤ AI 채팅 1차</a>
-            <!-- 
-              새로운 링크를 추가하고 싶으면 위 <a href=...>...</a> 한 줄을
-              복사해서 바로 아래에 붙여넣고 주소와 이름만 바꾸면 돼!
-            -->
+            
+            <!-- AI 채팅 달글 모음 - 아코디언 -->
+            <button class="accordion">🗨️ AI 채팅 달글 모음 ▼</button>
+            <div class="panel">
+                <a href="https://m.cafe.daum.net/subdued20club/VrjL/957592" target="_blank">💜 AI 채팅 6차</a>
+                <a href="https://m.cafe.daum.net/subdued20club/VrjL/957591" target="_blank">💙 AI 채팅 5차</a>
+                <a href="https://m.cafe.daum.net/subdued20club/VrjL/954686" target="_blank">💚 AI 채팅 4차</a>
+                <a href="https://m.cafe.daum.net/subdued20club/VrjL/954685" target="_blank">💛 AI 채팅 3차</a>
+                <a href="https://m.cafe.daum.net/subdued20club/VrjL/4139" target="_blank">🧡 AI 채팅 2차</a>
+                <a href="https://m.cafe.daum.net/subdued20club/VrjL/3418" target="_blank">❤️ AI 채팅 1차</a>
+            </div>
         </div>
 
         <div class="footer">
             🍞️
         </div>
     </div>
+
+    <script>
+        // 아코디언 기능을 위한 JavaScript
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // 활성화 토글
+                this.classList.toggle("active");
+                
+                // 패널 열고 닫기
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
